@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calorie Counter</title>
+  <link rel="stylesheet" href="cc.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><img src="Screenshot 2025-03-08 221837.png" alt="fitfusion logo" height="70px"></div>
+    <a href="index.html">Home</a>
+    <a href="workout.html">Workouts</a>
+    <a href="cc.html">Calorie Counter</a>
+    <a href="article.html">Blogs</a>
+    <a href="products.html">Products</a>
+    <a href="instructor.html">Instructors</a>
+    <a href="login.html">Login</a>
+    <a href="conatact.html">Contact</a>
+  </nav>
+
+  <div class="all">
+    <h1>"Calories don't hide 👀 — and neither should your goals 🏆."</h1>
+    <div class="full">
+      <div class="bowl">
+        <img src="https://i.pinimg.com/736x/13/6b/24/136b24804a2f3dedb823dbc8eb662e3f.jpg" alt="bowl" height="400px">
+      </div>
+
+      <div class="fl">
+        <h2 id="quote">"Counting calories, not regrets 🍕💪"</h2> <!-- Fixed ID -->
+        <div class="inp">
+          <input type="text" id="foodName" placeholder="Enter Food Name" />
+        </div>
+        <button onclick="getNutrition()" class="add">COUNT CALORIE</button>
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h2>FitFusion</h2>
+            <p>Your ultimate destination for fitness and well-being. Join us to transform your health and reach your goals.</p>
+        </div>
+
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Membership</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Gym Street, Fitness City</p>
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-envelope"></i> contact@fitfusion.com</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 FitFusion. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function getNutrition() {
+      const query = document.getElementById('foodName').value.trim();
+      const apiKey = 'abhsAyQmFzGYiLpWBNaTUg==j2RDqqw6ky8WHWU9';
+
+      if (!query) {
+        alert('Please enter a food item!');
+        return;
+      }
+
+      fetch(`https://api.calorieninjas.com/v1/nutrition?query=${encodeURIComponent(query)}`, {
+        method: 'GET',
+        headers: { 'X-Api-Key': apiKey }
+      })
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        const outputDiv = document.getElementById('output');
+        outputDiv.innerHTML = '';
+
+        if (data.items && data.items.length > 0) {
+          let table = document.createElement('table');
+          table.className = 'nutrition-table';
+
+          table.innerHTML = `
+            <tr>
+              <th>Food</th>
+              <th>Calories</th>
+              <th>Protein (g)</th>
+              <th>Fat (g)</th>
+              <th>Carbs (g)</th>
+            </tr>`;
+
+          data.items.forEach(item => {
+            table.innerHTML += `
+              <tr>
+                <td>${item.name}</td>
+                <td>${item.calories}</td>
+                <td>${item.protein_g}</td>
+                <td>${item.fat_total_g}</td>
+                <td>${item.carbohydrates_total_g}</td>
+              </tr>`;
+          });
+
+          outputDiv.appendChild(table);
+        } else {
+          outputDiv.innerHTML = '<p style="color:red;">No data found for that input.</p>';
+        }
+      })
+      .catch(error => {
+        document.getElementById('output').innerHTML = 'Error: ' + error.message;
+      });
+    }
+
+    const quotes = [
+      "Counting calories, not regrets 🍕💪",
+      "Because abs are made in the kitchen... allegedly 😅",
+      "One slice won’t hurt... or will it? 🤔",
+      "Track it before you snack it 😎",
+      "I lift... pizza slices. Now I count them too 🍕📊",
+      "Burning calories? First, let’s find them! 🔍🔥",
+      "You’re not overeating, you’re just under-tracking 😜"
+    ];
+
+    let quoteIndex = 0;
+
+    function rotateQuote() {
+      const quoteElement = document.getElementById("quote");
+      if (quoteElement) {
+        quoteIndex = (quoteIndex + 1) % quotes.length;
+        quoteElement.textContent = `"${quotes[quoteIndex]}"`;
+      }
+    }
+
+    window.onload = function () {
+      setInterval(rotateQuote, 3000); // every 3 seconds
+    };
+  </script>
+</body>
+</html>

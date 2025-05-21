@@ -1,0 +1,280 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+.navbar {
+    position: fixed; /* Keeps navbar fixed while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(254, 252, 252);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    z-index: 1000; /* Ensures navbar stays above other elements */
+}
+
+/* Navbar Links */
+.navbar a {
+    font-size: 20px;
+    text-decoration: none;
+    color: hsl(359, 77%, 41%);
+    font-weight: 600;
+    padding: 10px 15px;
+    margin: 0 5px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    animation: fadeInDown 0.8s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #8A1214; /* Darker red on hover */
+}
+
+/* Underline Animation */
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adds gap between text and underline */
+    width: 100%;
+    height: 2px;
+    background-color: #BA181B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Navbar Fade-In Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: auto;
+    animation: fadeInLeft 0.8s ease-in-out;
+}
+
+/* Logo Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.filter-bar {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: ;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    border: 0px solid #8A1214;
+}
+
+.filter-button {
+    border: 2px solid #8A1214;
+    background-color: #a89d9d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-button.active {
+    background-color: #dc2828;
+    color: white;
+    font-weight: bold;
+}
+
+.filter-button:hover {
+    background-color: #ddd;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.filter-button:focus {
+    outline: none;
+}
+
+/* Ensure filter bar wraps buttons on smaller screens */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filter-button {
+        margin-right: 0;
+    }
+}
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.video-gallery a {
+    display: block;
+    text-decoration: none;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.video-gallery a:hover {
+    transform: scale(1.05);
+}
+
+.video-gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9; /* Maintain aspect ratio for video thumbnails */
+    object-fit: cover;
+}
+
+.video-container {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#video-frame {
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .filter-bar {
+        padding: 5px;
+    }
+
+    .filter-button {
+        padding: 8px 12px;
+        margin-right: 5px;
+        font-size: 0.9em;
+    }
+
+    .video-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .video-container {
+        padding: 10px;
+    }
+}
+.filter-button.active {
+    background-color: #8A1214;
+    color: white;
+    font-weight: bold;
+}
+.footer {
+    background: #979595;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px; /* Reduced width */
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px; /* Decreased width */
+    max-width: 280px; /* Ensures compact layout */
+    margin: 15px;
+}
+
+.footer-section h2 {
+    color: #8A1214; /* Changed color */
+    margin-bottom: 12px;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8A1214; /* Updated hover effect */
+}
+
+.social-icons a {
+    color: white;
+    font-size: 18px;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8A1214;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    padding: 8px 0;
+    background: #000;
+    font-size: 14px;
+}

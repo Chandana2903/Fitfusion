@@ -1,0 +1,812 @@
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro');
+*{
+    text-decoration: none;
+}
+a{
+    color: white;
+}
+.wo{
+    color: white;
+    
+}
+.cc a{
+color: #8A1214;
+text-decoration: none;
+}
+body {
+    margin: 0;
+    font-family: sans-serif;
+    padding-top: 70px; /* Prevents content from being hidden behind navbar */
+}
+
+/* Navbar Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  .navbar {
+    position: fixed; /* Keeps navbar fixed while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(254, 252, 252);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    z-index: 1000; /* Ensures navbar stays above other elements */
+}
+
+/* Navbar Links */
+.navbar a {
+    font-size: 20px;
+    text-decoration: none;
+    color: hsl(359, 77%, 41%);
+    font-weight: 600;
+    padding: 10px 15px;
+    margin: 0 5px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    animation: fadeInDown 0.8s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #8A1214; /* Darker red on hover */
+}
+
+/* Underline Animation */
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adds gap between text and underline */
+    width: 100%;
+    height: 2px;
+    background-color: #BA181B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Navbar Fade-In Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: auto;
+    animation: fadeInLeft 0.8s ease-in-out;
+}
+
+/* Logo Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Banner Styling */
+.ban {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh; /* Makes the banner fit the viewport */
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+}
+
+.ban::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("Screenshot 2025-03-08 235740.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8; /* Apply opacity only to the background */
+    z-index: -1;
+}
+
+/* Fit Fusion Text */
+.split-text-container {
+    margin-left: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 34px;
+    font-weight: bold;
+    text-transform: uppercase;
+    gap: 10px;
+}
+
+.text-part {
+    display: inline-block;
+    position: relative;
+    color: #BA181B; /* Red text color */
+    font-size: 78px; /* Larger font size */
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.text-part.left {
+    transform: translateX(-200%);
+    animation-name: slide-in-left;
+}
+
+.text-part.right {
+    transform: translateX(200%);
+    animation-name: slide-in-right;
+}
+
+@keyframes slide-in-left {
+    0% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+    0% { transform: translateX(200%); }
+    100% { transform: translateX(0); }
+}
+
+/* Typewriter Animation for <p> */
+.ban p {
+    font-family: 'Anonymous Pro', monospace;
+    font-size: 30px;
+    color: #BA181B; /* Red color */
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typewriter 5s steps(50) 1s 1 normal both;
+    position: relative;
+    z-index: 1;
+}
+.fade-in {
+    opacity: 0;
+    animation: fadeInAnim 1s forwards;
+}
+
+.fade-out {
+    opacity: 1;
+    animation: fadeOutAnim 1s forwards;
+}
+
+@keyframes fadeInAnim {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOutAnim {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* .wo div{
+    height: 300px;
+    width: 300px;
+    border: 2px solid black;
+    display: flex;
+    display: inline-flex;
+    justify-content: space-around;
+    margin-left: 170px;
+   
+    
+}
+.wo div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5; 
+    z-index: -1; 
+}
+
+.wo div h2 {
+
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+    color: #ebeaef; /* Keeps text readable *
+    font-size: 24px;
+    text-align: center;
+}
+.dance{
+
+    background-image: url(https://bloximages.newyork1.vip.townnews.com/laduenews.com/content/tncms/assets/v3/editorial/c/a2/ca2c53aa-b996-11eb-8be9-0735ffda5c90/60a6a64d60b62.image.jpg?resize=1200%2C800);
+    background-size: cover;
+    background-repeat:no-repeat;
+   
+}
+.yoga{
+    background-image: url(https://www.sleepfoundation.org/wp-content/uploads/2021/01/yoga-outside.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+.body{
+    background-image: url(https://cdn.shopify.com/s/files/1/0471/3332/7519/files/generic-training-inset-1.jpg?v=1730749212);
+    background-size: cover;
+    background-repeat:no-repeat;
+}
+.wo button{
+    position: absolute;
+    height: 30px;
+    font-weight: 600;
+    width: 80px;
+    font-size: 17px;
+    border: 2px solid black;
+    margin-top: 210px;
+    border-radius: 10px;
+    background-color: rgb(169, 44, 44);
+} */
+.wo div {
+    height: 300px;
+    width: 300px;
+    border: 3px solid rgb(168, 21, 21);
+    display: flex;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Important for absolute positioning inside */
+    margin: 20px;
+    overflow: hidden;
+    margin-left: 150px;;
+    text-align: center;
+    border-radius: 20px;;
+}
+
+/* Adding a semi-transparent overlay */
+.wo div::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark transparent overlay */
+    z-index: 1; /* Places the overlay above the background */
+}
+
+/* Text styling so it remains above the overlay */
+.wo div h2 {
+    margin-top: 80px;
+    position: relative;
+    z-index: 2; /* Ensures text is above the overlay */
+    color: white; /* Ensures readability */
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Individual Background Images */
+.dance {
+    background-image: url('https://bloximages.newyork1.vip.townnews.com/laduenews.com/content/tncms/assets/v3/editorial/c/a2/ca2c53aa-b996-11eb-8be9-0735ffda5c90/60a6a64d60b62.image.jpg?resize=1200%2C800');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.yoga {
+    background-image: url('https://www.sleepfoundation.org/wp-content/uploads/2021/01/yoga-outside.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.body {
+    background-image: url('https://cdn.shopify.com/s/files/1/0471/3332/7519/files/generic-training-inset-1.jpg?v=1730749212');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.wo{
+    height: 550px;
+}
+.wo div{
+    margin-top: 70px;
+    transform: scale(1.3);
+}
+.wo button{
+    position: absolute;
+    z-index: 3;
+    margin-left: -40px;
+    height: 40px;
+    font-weight: 600;
+    width:px;
+    font-size: 12px;
+    border: 2px solid black;
+    margin-top: 0px;
+    border-radius: 10px;
+    background-color: rgb(132, 25, 25);
+}
+.wo div p {
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.5s ease-in-out; /* Smooth transition */
+    color: white; /* Ensures readability */
+    font-size: 18px;
+    position: relative;
+    z-index: 2; /* Ensures text is above the background */
+    text-align: center;
+}
+
+.wo div:hover p {
+    opacity: 1; /* Becomes visible on hover */
+}
+.wo button:hover{
+    background-color:rgb(132, 25, 25);
+    color: white;
+    transform: scale(1.1);
+}
+.items {
+    display: flex;
+    align-items: center; /* Aligns image and text in a row */
+    gap: 90px; /* Adds spacing between image and text */
+    justify-content: center; /* Centers the content horizontally */
+    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+}
+
+.items img {
+    margin-left: -100px;
+    width: 500px; /* Adjust image size */
+    height: auto;
+    border-radius: 10px; /* Optional: Rounded corners for a nice look */
+}
+
+.con {
+    max-width: 500px; /* Ensures text doesn’t stretch too wide */
+    text-align: left; /* Aligns text properly */
+}
+.cc{
+    background-color: rgb(207, 199, 199);
+    height:590px;
+}
+.con p{
+    font-size: 18px;
+}
+
+.con button{
+    /* margin-left: 100px; */
+    /* margin-top: 10px; */
+    height: 30px;
+    width: 150px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    /* margin-bottom: 10px; */
+}
+.con button:hover{
+    transform: scale(1.2);
+}
+.wc{
+    display: inline-block;
+}
+.plan{
+    display: flex;
+}
+.plan img{
+    margin-left: -100px;
+    width: 500px; /* Adjust image size */
+    height: auto;
+    border-radius: 10px; /* Optional: Rounded corners for a nice look */
+}
+.wc{
+    display: inline-flex;
+    height: 500px;
+}
+.wc .text{
+    width: 600px;
+    height: max-content;
+    margin-left: 100px;
+}
+.text{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 15rem;
+    margin-top: 10px;
+    margin-left: 12px;
+    padding: 30px;
+    border-radius: 10px;
+    border: 3px solid rgb(144, 32, 32);
+}
+.text p{
+    font-size: 20px;
+}
+.wc img{
+    width: 550px;
+    margin-bottom: 30px;
+    margin-left: 90px;
+    border-radius: 10px;
+}
+.pro{
+    background-color: white;
+}
+.pro h1{
+    background-color: white;
+}
+.pit{
+    background-color: white;
+}
+/* .ppn{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid grey;
+    color: #8A1214;
+  
+}
+.ppn:hover{
+  color: white;
+    background-color: #8A1214;
+    transform: scale(1.2);
+}
+.pit{
+    display:flex;
+    justify-content: space-around;
+    margin-left: 10px;
+    margin-top: 50px;
+}
+.pit div{
+    height: 430px;
+    width:350px;
+}
+.pit img{   
+    border:3px solid #8A1214;
+    border-radius: 10px;
+    height: 430px;
+    width:320px;
+    opacity: 0.8;
+}
+.pit p{
+    position: absolute;
+    margin-top: -225px;
+    font-weight: 600;
+    margin-left: 75px;
+    font-size: 23px;
+    opacity: 1;
+    color: rgb(255, 247, 247);
+}
+.pit div {
+    position: relative; /* Ensures text is placed relative to the container 
+}
+.pro{
+    margin-top: 0;
+    height: 570px;
+    background-color: gray;
+} */
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.pro {
+    margin-top: 0;
+    height: 570px;
+    background-color:  rgb(255, 255, 255);
+}
+
+.pit {
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10px;
+    margin-top: 50px;
+}
+
+.pit div {
+    height: 430px;
+    width: 350px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    background: white;
+    border: 3px solid #8A1214;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pit img {   
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Ensures the image fills the div without distortion */
+    opacity: 0.8;
+}
+
+.pit p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 23px;
+    text-align: center;
+    color: rgb(255, 247, 247);
+    background: rgba(138, 18, 20, 0.7);
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Holographic Hover Effect with Adjusted Colors */
+.holographic-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+    border: 3px solid #8A1214;
+}
+
+.holographic-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        0deg, 
+        transparent, 
+        transparent 30%, 
+        rgba(138, 18, 20, 0.3) /* Matching #8A1214 */
+    );
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.holographic-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(138, 18, 20, 0.5); /* Dark red glow */
+}
+
+.holographic-card:hover::before {
+    opacity: 1;
+    transform: rotate(-45deg) translateY(100%);
+}
+.instructors {
+    text-align: center;
+    background-color:w;
+    padding: 50px 0;
+}
+
+.title {
+    color: #8A1214;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.instructor-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.instructor-card {
+    width: 350px;
+    height: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background:white;
+    transition: 0.5s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.instructor-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 3px solid #8A1214;
+    border-radius: 10px;
+    opacity: 0.8;
+}
+
+.instructor-card p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: rgba(138, 18, 20, 0.8);
+    padding: 10px;
+}
+
+.instructor-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(138, 18, 20, 0.5);
+}
+/* .ch{
+    height: 450px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(https://i.pinimg.com/736x/d1/31/8e/d1318e0c7d853ee61ca79989e5d4816b.jpg);
+    opacity: 0.5;
+} */
+ .cb:hover{
+    background-color: #8A1214;
+    color: white;
+    transform: scale(1);
+ }
+.ch {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(https://i.pinimg.com/736x/d2/72/1e/d2721eca3575952a41f5fec7ac3f200b.jpg) center/cover no-repeat;
+   
+    color: #8A1214; /* Ensure text remains visible */
+}
+.ch h1{
+    font-size: 70px;
+    z-index: 1;
+}
+.ch p{
+    color: white;
+    font-size: 25px;
+    z-index: 2;
+    font-size: 35px;
+}
+.ch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: url(https://i.pinimg.com/736x/d2/72/1e/d2721eca3575952a41f5fec7ac3f200b.jpg) center/cover no-repeat;
+    opacity: 0.5; /* Adjust opacity of the background only */
+    z-index: -1; /* Places it behind the content */
+}
+
+.chcon {
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensures content is above the background */
+}
+.ppn {
+    padding: 10px 20px;
+    background:#8A1214;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.ppn:hover{
+    border: 2px solid #000;
+    background-color: rgb(186, 182, 182);
+    font-weight: 500;
+    color: #8A1214;
+    transform:scale(1.1)
+}
+
+.ch button {
+    padding: 10px 20px;
+    background:#8A1214;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px;
+}
+.ch button:hover{
+    font-weight: 500;
+    color: #8A1214;
+    transform:scale(1.3)
+}
+.footer {
+    background: #979595;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px; /* Reduced width */
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px; /* Decreased width */
+    max-width: 280px; /* Ensures compact layout */
+    margin: 15px;
+}
+
+.footer-section h2 {
+    color: #8A1214; /* Changed color */
+    margin-bottom: 12px;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8A1214; /* Updated hover effect */
+}
+
+.social-icons a {
+    color: white;
+    font-size: 18px;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8A1214;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    padding: 8px 0;
+    background: #000;
+    font-size: 14px;
+}

@@ -1,0 +1,286 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: black;
+}
+.navbar {
+    position: fixed; /* Keeps navbar fixed while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(254, 252, 252);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    z-index: 1000; /* Ensures navbar stays above other elements */
+}
+
+/* Navbar Links */
+.navbar a {
+    font-size: 20px;
+    text-decoration: none;
+    color: hsl(359, 77%, 41%);
+    font-weight: 600;
+    padding: 10px 15px;
+    margin: 0 5px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    animation: fadeInDown 0.8s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #8A1214; /* Darker red on hover */
+}
+
+/* Underline Animation */
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adds gap between text and underline */
+    width: 100%;
+    height: 2px;
+    background-color: #BA181B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Navbar Fade-In Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: auto;
+    animation: fadeInLeft 0.8s ease-in-out;
+}
+
+/* Logo Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* .top-bar {
+    background: #b30000;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+.top-bar button {
+    background: #ff0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+header {
+    background-color: #b30000;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+} */
+
+.hero {
+    height: 60vh;
+    width: 100vw;
+    color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+}
+.hero-content {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    text-align: center;
+}
+.allp{
+    margin-top: -90px;
+}
+/* Product Section */
+.products-section {
+    padding: 20px;
+}
+.products-section h2 {
+    text-align: center;
+    color: #b30000;
+    margin-bottom: 20px;
+}
+
+/* Scrollable Product Slider */
+.product-slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.product-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
+    scrollbar-width: none;
+}
+.product-slider::-webkit-scrollbar {
+    display: none;
+}
+.product {
+    min-width: 250px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.product img {
+    width: 80%;
+    height: 205px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.buy-btn {
+    background-color: #b30000;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none   ;
+}
+.buy-btn:hover {
+    background-color: #ff0000;
+}
+
+/* Slider Arrows */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #b30000;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 10;
+}
+.prev-btn {
+    left: 5px;
+}
+.next-btn {
+    right: 5px;
+}
+.footer {
+    background: #979595;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px; /* Reduced width */
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px; /* Decreased width */
+    max-width: 280px; /* Ensures compact layout */
+    margin: 15px;
+}
+
+.footer-section h2 {
+    color: #8A1214; /* Changed color */
+    margin-bottom: 12px;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8A1214; /* Updated hover effect */
+}
+
+.social-icons a {
+    color: white;
+    font-size: 18px;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8A1214;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    padding: 8px 0;
+    background: #000;
+    font-size: 14px;
+}

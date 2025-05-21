@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+  .navbar {
+    position: fixed; /* Keeps navbar fixed while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(254, 252, 252);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    z-index: 1000; /* Ensures navbar stays above other elements */
+}
+
+/* Navbar Links */
+.navbar a {
+    font-size: 20px;
+    text-decoration: none;
+    color: hsl(359, 77%, 41%);
+    font-weight: 600;
+    padding: 10px 15px;
+    margin: 0 5px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    animation: fadeInDown 0.8s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #8A1214; /* Darker red on hover */
+}
+
+/* Underline Animation */
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adds gap between text and underline */
+    width: 100%;
+    height: 2px;
+    background-color: #BA181B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Navbar Fade-In Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: auto;
+    animation: fadeInLeft 0.8s ease-in-out;
+}
+
+/* Logo Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+  .instructor-card {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+  }
+  .instructor-card:hover{
+    transform: scale(1.2);
+  }
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+  }
+  
+  .profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-details {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .title {
+    font-size: 18px;
+    color: #777;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin: 10px 0;
+  }
+  
+  blockquote {
+    font-style: italic;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .cta-button {
+    margin-bottom: 100px;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #831414;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .cta-button:hover {
+    background-color: #831414;
+  }
+  
+  /* Initial hidden state for sections */
+  .section {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s ease-out;
+    margin-bottom: 20px;
+  }
+  
+  /* Reveal the About section initially */
+  .about.reveal {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Optionally, add a "reveal" class for the sections to slide in */
+  .section.reveal {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  

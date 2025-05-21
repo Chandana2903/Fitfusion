@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sweet Gym Feedback</title>
+  <style>
+    /* Reset and Styling */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      background: url('https://i.pinimg.com/474x/47/fa/d6/47fad6c6df6e2ebfa8fe340581833b8b.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 6vw;
+      color: #e75480;
+      text-shadow: 1px 1px 5px white;
+      font-weight: bold;
+      padding: 5vh 10px 0;
+    }
+
+    .stars {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .stars i {
+      font-size: 2.5em;
+      color: #ccc;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .stars i.active {
+      color: gold;
+    }
+
+    .lines {
+      width: 90%;
+      max-width: 700px;
+      height: 50vh;
+      margin: 5vh auto 0;
+      padding: 10px 20px;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 28px,
+        #999 29px,
+        transparent 30px
+      );
+    }
+
+    .lines textarea {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      resize: none;
+      font-size: 16px;
+      line-height: 28px;
+      color: #333;
+      outline: none;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 200px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #e75480;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #d13b68;
+    }
+
+    .thank-you {
+      display: none;
+      opacity: 0;
+      text-align: center;
+      padding: 60px 20px;
+      font-size: 24px;
+      color: #333;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    .thank-you h1 {
+      font-size: 8vw;
+      color: #e75480;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      left: -10000px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+
+  <!-- ✅ Correct Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+</head>
+<body>
+
+  <div class="title">💖 Leave Your Sweet Gym Feedback 💖</div>
+
+  <div class="stars" id="star-rating">
+    <i class="fa-solid fa-star" data-value="1"></i>
+    <i class="fa-solid fa-star" data-value="2"></i>
+    <i class="fa-solid fa-star" data-value="3"></i>
+    <i class="fa-solid fa-star" data-value="4"></i>
+    <i class="fa-solid fa-star" data-value="5"></i>
+  </div>
+
+  <div class="lines">
+    <label for="feedback" class="visually-hidden">Feedback</label>
+    <textarea id="feedback" placeholder="Hey Gym Team, I just wanted to say..."></textarea>
+  </div>
+
+  <button class="submit-btn" onclick="submitFeedback()">Submit Feedback</button>
+
+  <div class="thank-you" id="thank-you-message">
+    <h1>Thank you for your feedback!</h1>
+    <p>Your thoughts are valuable to us. We appreciate you taking the time to share.</p>
+  </div>
+
+  <script>
+    let selectedRating = 0;
+
+    const stars = document.querySelectorAll('#star-rating i');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        selectedRating = star.getAttribute('data-value');
+        updateStars(selectedRating);
+      });
+    });
+
+    function updateStars(rating) {
+      stars.forEach(star => {
+        if (star.getAttribute('data-value') <= rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    function submitFeedback() {
+      const feedback = document.getElementById('feedback').value.trim();
+
+      if (feedback === '') {
+        alert('Please enter your feedback before submitting.');
+        return;
+      }
+
+      console.log("User Feedback:", feedback);
+      console.log("User Rating:", selectedRating + " stars");
+
+      document.querySelector('.title').style.display = 'none';
+      document.querySelector('.stars').style.display = 'none';
+      document.querySelector('.lines').style.display = 'none';
+      document.querySelector('.submit-btn').style.display = 'none';
+
+      const thankYouMessage = document.getElementById('thank-you-message');
+      thankYouMessage.style.display = 'block';
+      setTimeout(() => {
+        thankYouMessage.style.opacity = '1';
+      }, 10);
+    }
+  </script>
+
+</body>
+</html>

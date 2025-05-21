@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instructor Profiles</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    main {
+      margin-top: 120px;
+    }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background-color: rgb(254, 252, 252);
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      z-index: 1000;
+    }
+    .navbar a {
+      font-size: 20px;
+      text-decoration: none;
+      color: hsl(359, 77%, 41%);
+      font-weight: 600;
+      padding: 10px 15px;
+      margin: 0 5px;
+      position: relative;
+      transition: color 0.3s ease-in-out;
+      animation: fadeInDown 0.8s ease-in-out;
+    }
+    .navbar a:hover {
+      color: #8A1214;
+    }
+    .navbar a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background-color: #BA181B;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.5s ease-in-out;
+    }
+    .navbar a:hover::after {
+      transform: scaleX(1);
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .navbar .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-right: auto;
+      animation: fadeInLeft 0.8s ease-in-out;
+    }
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .instructor-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .instructor-card {
+      display: flex;
+      flex-direction: row;
+      width: 900px;
+      height: 400px;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .instructor-card:hover{
+      transform: scale(1.05);
+    }
+    .profile-img {
+      flex: 1;
+      background-color: #ddd;
+    }
+    .profile-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .profile-details {
+      flex: 2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-details h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .title {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .content-slider {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .section {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+    .section.active {
+      left: 0;
+      opacity: 1;
+      position: relative;
+    }
+    ul {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+    blockquote {
+      background: #f9f9f9;
+      padding: 10px;
+      border-left: 4px solid #ccc;
+      margin: 10px 0;
+    }
+    .cta-button {
+      background-color: #841111;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+    }
+    .footer-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+    }
+    .dot {
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .dot.active {
+      background-color: #841111;
+    }
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .close-btn {
+      background-color: #841111;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .footer {
+    background: #979595;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px; /* Reduced width */
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px; /* Decreased width */
+    max-width: 280px; /* Ensures compact layout */
+    margin: 15px;
+}
+
+.footer-section h2 {
+    color: #8A1214; /* Changed color */
+    margin-bottom: 12px;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8A1214; /* Updated hover effect */
+}
+
+.social-icons a {
+    color: white;
+    font-size: 18px;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8A1214;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    padding: 8px 0;
+    background: #000;
+    font-size: 14px;
+}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><img src="Screenshot 2025-03-08 221837.png" alt="fitfusion logo" height="70px"></div>
+    <a href="index.html">Home</a>
+    <a href="workout.html">Workouts</a>
+    <a href="cc.html">Calorie Counter</a>
+    <a href="article.html">Blogs</a>
+    <a href="products.html">Products</a>
+    <a href="instructor.html">Instructors</a>
+    <a href="login.html">Login</a>
+    <a href="conatact.html">Contact</a>
+  </nav>
+
+  <main>
+    <div class="instructor-container">
+
+      <!-- Reusable Instructor Card Template -->
+      <!-- Repeat this block for each instructor -->
+      <!-- John Doe -->
+      <div class="instructor-card">
+        <div class="profile-img">
+          <img src="https://avas.live/fitness/wp-content/uploads/sites/40/2019/12/gt8.jpg" alt="Instructor John">
+        </div>
+        <div class="profile-details">
+          <div>
+            <h2>John Doe</h2>
+            <p class="title">Certified Fitness Instructor</p>
+          </div>
+          <div class="content-slider">
+            <div class="section active"><h3>About John</h3><p>John brings over a decade of experience in personal fitness and group training.</p></div>
+            <div class="section"><h3>Specialties</h3><ul><li>HIIT</li><li>Strength Training</li></ul></div>
+            <div class="section"><h3>Certifications</h3><ul><li>ACE Certified</li></ul></div>
+            <div class="section"><h3>Classes</h3><ul><li>Body Sculpt</li><li>Bootcamp</li></ul></div>
+            <div class="section"><h3>Testimonials</h3><blockquote>“John’s workouts are intense and effective!”</blockquote></div>
+            <div class="section"><h3>Contact</h3><p>Email: john@example.com</p></div>
+          </div>
+          <div class="footer-cta">
+            <span><strong>Book Now:</strong></span>
+            <a class="cta-button">Book a Session</a>
+          </div>
+          <div class="dots"></div>
+        </div>
+      </div>
+
+      <!-- Jane Smith -->
+      <div class="instructor-card">
+        <div class="profile-img">
+          <img src="http://www.therunnerstrip.com/wp-content/uploads/2011/03/DSC_0018.jpg" alt="Instructor Jane">
+        </div>
+        <div class="profile-details">
+          <div>
+            <h2>Jane Smith</h2>
+            <p class="title">Yoga & Pilates Expert</p>
+          </div>
+          <div class="content-slider">
+            <div class="section active"><h3>About Jane</h3><p>Jane focuses on mind-body balance through yoga and Pilates.</p></div>
+            <div class="section"><h3>Specialties</h3><ul><li>Yoga</li><li>Pilates</li><li>Meditation</li></ul></div>
+            <div class="section"><h3>Certifications</h3><ul><li>Yoga Alliance RYT 500</li></ul></div>
+            <div class="section"><h3>Classes</h3><ul><li>Sunrise Yoga</li><li>Pilates Core</li></ul></div>
+            <div class="section"><h3>Testimonials</h3><blockquote>“Jane helped me find inner peace!”</blockquote></div>
+            <div class="section"><h3>Contact</h3><p>Email: jane@example.com</p></div>
+          </div>
+          <div class="footer-cta">
+            <span><strong>Book Now:</strong></span>
+            <a class="cta-button">Book a Session</a>
+          </div>
+          <div class="dots"></div>
+        </div>
+      </div>
+
+      <!-- Mike Johnson -->
+      <div class="instructor-card">
+        <div class="profile-img">
+          <img src="https://avas.live/fitness/wp-content/uploads/sites/40/2019/12/gt6.jpg" alt="Mike Johnson">
+        </div>
+        <div class="profile-details">
+          <div>
+            <h2>Alex Lee</h2>
+            <p class="title">Athletic Performance Specialist</p>
+          </div>
+          <div class="content-slider">
+            <div class="section active"><h3>About Mike</h3><p>Mike has coached competitive athletes for 6+ years specializing in agility and recovery.</p></div>
+            <div class="section"><h3>Specialties</h3><ul><li>Agility Training</li><li>Sports Conditioning</li></ul></div>
+            <div class="section"><h3>Certifications</h3><ul><li>CSCS</li><li>First Aid</li></ul></div>
+            <div class="section"><h3>Classes</h3><ul><li>Speed Camp</li><li>Agility Drills</li></ul></div>
+            <div class="section"><h3>Testimonials</h3><blockquote>"Mike's sessions are intense but incredibly effective!"</blockquote></div>
+            <div class="section"><h3>Contact</h3><p>Email: mike.johnson@email.com</p></div>
+          </div>
+          <div class="footer-cta">
+            <span><strong>Book Now:</strong></span>
+            <a class="cta-button">Book a Session</a>
+          </div>
+          <div class="dots"></div>
+        </div>
+      </div>
+
+      <!-- Alex Lee -->
+      <div class="instructor-card">
+        <div class="profile-img">
+          <img src="https://cdn.shoutoutmiami.com/wp-content/uploads/2023/08/6S6A7820.jpg" alt="Instructor Alex">
+        </div>
+        <div class="profile-details">
+          <div>
+            <h2>Mike Johnson</h2>
+            <p class="title">Strength & Conditioning Coach</p>
+          </div>
+          <div class="content-slider">
+            <div class="section active"><h3>About Alex</h3><p>Alex trains athletes for peak performance using science-backed techniques.</p></div>
+            <div class="section"><h3>Specialties</h3><ul><li>Powerlifting</li><li>Speed Training</li></ul></div>
+            <div class="section"><h3>Certifications</h3><ul><li>NSCA-CSCS</li></ul></div>
+            <div class="section"><h3>Classes</h3><ul><li>Explosive Power</li></ul></div>
+            <div class="section"><h3>Testimonials</h3><blockquote>“Alex helped me improve my athletic performance by 40%.”</blockquote></div>
+            <div class="section"><h3>Contact</h3><p>Email: alex@example.com</p></div>
+          </div>
+          <div class="footer-cta">
+            <span><strong>Book Now:</strong></span>
+            <a class="cta-button">Book a Session</a>
+          </div>
+          <div class="dots"></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="popupModal" class="modal">
+    <div class="modal-content">
+      <p>You will receive a confirmation email shortly.</p>
+      <button class="close-btn" id="closeModal">Close</button>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h2>FitFusion</h2>
+            <p>Your ultimate destination for fitness and well-being. Join us to transform your health and reach your goals.</p>
+        </div>
+
+        <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Membership</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Gym Street, Fitness City</p>
+            <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fas fa-envelope"></i> contact@fitfusion.com</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 FitFusion. All Rights Reserved.</p>
+    </div>
+</footer>
+  <script>
+    const cards = document.querySelectorAll('.instructor-card');
+
+    cards.forEach((card) => {
+      const sections = card.querySelectorAll('.section');
+      const dotContainer = card.querySelector('.dots');
+      let current = 0;
+
+      sections.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => showSlide(index));
+        dotContainer.appendChild(dot);
+      });
+
+      const dots = dotContainer.querySelectorAll('.dot');
+
+      function showSlide(index) {
+        sections.forEach((sec, i) => {
+          sec.classList.toggle('active', i === index);
+          dots[i].classList.toggle('active', i === index);
+        });
+        current = index;
+      }
+
+      setInterval(() => {
+        const next = (current + 1) % sections.length;
+        showSlide(next);
+      }, 4000);
+    });
+
+    const modal = document.getElementById('popupModal');
+    const closeModal = document.getElementById('closeModal');
+    const bookButtons = document.querySelectorAll('.cta-button');
+
+    bookButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        modal.style.display = 'block';
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

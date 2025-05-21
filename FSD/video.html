@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Video</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .video-container {
+            margin-top: 50px;
+        }
+        iframe {
+            width: 80%;
+            height: 450px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="video-container">
+        <iframe id="video-frame" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // Extract video ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get("videoId");
+
+        // If a video ID exists, embed it into the iframe
+        if (videoId) {
+            document.getElementById("video-frame").src = `https://www.youtube.com/embed/${videoId}`;
+        } else {
+            document.body.innerHTML = "<h2>No video found!</h2>";
+        }
+    </script>
+
+</body>
+</html>

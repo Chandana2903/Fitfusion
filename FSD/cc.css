@@ -1,0 +1,288 @@
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #fdfcfc;
+  }
+  .navbar {
+    position: fixed; /* Keeps navbar fixed while scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(254, 252, 252);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    z-index: 1000; /* Ensures navbar stays above other elements */
+}
+
+/* Navbar Links */
+.navbar a {
+    font-size: 20px;
+    text-decoration: none;
+    color: hsl(359, 77%, 41%);
+    font-weight: 600;
+    padding: 10px 15px;
+    margin: 0 5px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+    animation: fadeInDown 0.8s ease-in-out;
+}
+
+.navbar a:hover {
+    color: #8A1214; /* Darker red on hover */
+}
+
+/* Underline Animation */
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adds gap between text and underline */
+    width: 100%;
+    height: 2px;
+    background-color: #BA181B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Navbar Fade-In Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar .logo {
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: auto;
+    animation: fadeInLeft 0.8s ease-in-out;
+}
+
+/* Logo Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+  .all {
+    padding-top: 80px;
+    height: 600px;
+    text-align: center;
+  }
+  
+  .full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .bowl img {
+    margin: 20px;
+    border-radius: 50%;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+  }
+  
+  .fl {
+    position: relative;
+    border: 3px solid #8A1214;
+    border-radius: 20px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+    z-index: 1;
+    overflow: hidden; /* ensures the pseudo-element respects border-radius */
+    background-color: white; /* fallback */
+  }
+  
+  .fl::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(https://i.pinimg.com/736x/c5/d9/27/c5d9277c8d6ecd18d18095e5facf7f83.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
+    border-radius: 20px;
+  }
+  
+  .fl * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .fl h2 {
+    color: #801313;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .inp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .inp input {
+    width: 80%;
+    height: 35px;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    border: 2px solid #5f5d5d;
+    border-radius: 8px;
+  }
+  
+  .inp input:focus {
+    border-color: #8A1214;
+    outline: none;
+  }
+  
+  .add {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #8A1214;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .add:hover {
+    background-color: rgb(208, 208, 208);
+    color: #8A1214;
+    transform: scale(1.05);
+  }
+  
+  .add:active {
+    background-color: green;
+    color: white;
+  }
+  
+  #output {
+    margin-top: 25px;
+    text-align: center;
+    overflow-x: auto;
+  }
+  
+  .nutrition-table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 360px;
+    background-color: white;
+    border: 2px solid #8A1214;
+  }
+  
+  .nutrition-table th,
+  .nutrition-table td {
+    border: 1px solid #8A1214;
+    padding: 8px 12px;
+    text-align: center;
+  }
+  
+  .nutrition-table th {
+    background-color: #8A1214;
+    color: white;
+  }
+  .footer {
+    background: #979595;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1000px; /* Reduced width */
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px; /* Decreased width */
+    max-width: 280px; /* Ensures compact layout */
+    margin: 15px;
+}
+
+.footer-section h2 {
+    color: #8A1214; /* Changed color */
+    margin-bottom: 12px;
+}
+
+.footer-section p, .footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #8A1214; /* Updated hover effect */
+}
+
+.social-icons a {
+    color: white;
+    font-size: 18px;
+    margin: 0 8px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #8A1214;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    padding: 8px 0;
+    background: #000;
+    font-size: 14px;
+}
+  
